@@ -20,11 +20,11 @@ oc delete dc,bc,build,svc,route,pod,is --all
 echo "Waiting 30 seconds to finialize deletion of resources..."
 sleep 30
 
-rm -rf /projects/cloud-native-workshop-v2m3-labs/catalog/src/main/resources/application-default.properties
-cp /projects/cloud-native-workshop-v2m3-labs/istio/scripts/application-default.properties /projects/cloud-native-workshop-v2m3-labs/catalog/src/main/resources/
-sed -i "s/userXX/${USERXX}/g" /projects/cloud-native-workshop-v2m3-labs/catalog/src/main/resources/application-default.properties
+rm -rf ~/cloud-native-workshop-v2m3-labs/catalog/src/main/resources/application-default.properties
+cp ~/cloud-native-workshop-v2m3-labs/istio/scripts/application-default.properties ~/cloud-native-workshop-v2m3-labs/catalog/src/main/resources/
+sed -i "s/userXX/${USERXX}/g" ~/cloud-native-workshop-v2m3-labs/catalog/src/main/resources/application-default.properties
 
-cd /projects/cloud-native-workshop-v2m3-labs/catalog/
+cd ~/cloud-native-workshop-v2m3-labs/catalog/
 
 oc new-app -e POSTGRESQL_USER=catalog \
              -e POSTGRESQL_PASSWORD=mysecretpassword \
