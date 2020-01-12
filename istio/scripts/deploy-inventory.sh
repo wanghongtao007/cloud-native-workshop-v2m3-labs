@@ -14,7 +14,7 @@ echo Deploy Inventory service........
 
 oc project $USERXX-inventory || oc new-project $USERXX-inventory
 
-cd /projects/cloud-native-workshop-v2m3-labs/inventory/
+cd ~/cloud-native-workshop-v2m3-labs/inventory/
 
 oc delete dc,bc,build,svc,route,pod,is --all
 
@@ -31,6 +31,9 @@ oc new-app -e POSTGRESQL_USER=inventory \
 oc new-build registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.5 --binary --name=inventory-quarkus -l app=inventory-quarkus
 
 rm -rf target/binary && mkdir -p target/binary && cp -r target/*runner.jar target/lib target/binary
+
+echo "Waiting 30 seconds to prepare imagestream..."
+sleep 30
 
 oc start-build inventory-quarkus --from-dir=target/binary --follow
 
